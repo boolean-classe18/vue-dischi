@@ -13,12 +13,23 @@
             <header>
                 <div class="container">
                     <img src="logo.png" alt="logo" />
+
+                    <div class="filter">
+                        <select v-model="genere_selezionato">
+                            <option value="">Tutti i generi</option>
+                            <option v-for="genere in generi" :value="genere">
+                                {{ genere }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </header>
 
             <div class="cds-container container">
 
-                <div class="cd" v-for="disco in dischi">
+                <div class="cd"
+                    v-for="disco in dischi"
+                    v-if="genere_selezionato == '' || genere_selezionato == disco.genre">
                     <img :src="disco.poster" :alt="disco.title">
                     <h3>{{ disco.title }}</h3>
                     <span class="author">{{ disco.author }}</span>
